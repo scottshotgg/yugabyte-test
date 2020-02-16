@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "e1861b62-01eb-4d8e-a5f0-60e1865d0a3f",
+		"name": "yugabyte-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Employee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "505da4ea-7631-4cd9-b935-c64445ad81f1",
+						"exec": [
+							"pm.test(\"Set ID\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.globals.set(\"id\", jsonData[\"ID\"]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"language\": \"leet\",\n\t\"age\": 69,\n\t\"name\": \"datboi\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/employee",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"employee"
+					]
+				},
+				"description": "POST /employee"
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve Employee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1a7f92ba-d744-4ce2-b3ba-b56d8f738a5b",
+						"exec": [
+							"pm.test(\"Compare ID recieved\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.ID).to.eql(pm.globals.get(\"id\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/employee/{{id}}",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"employee",
+						"{{id}}"
+					]
+				},
+				"description": "GET /employee/:id"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

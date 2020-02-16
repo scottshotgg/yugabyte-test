@@ -1,0 +1,9 @@
+docker build -t yugabyte-test:v$1 .
+
+docker tag yugabyte-test:v$1 localhost:5000/yugabyte-test:v$1
+
+docker push localhost:5000/yugabyte-test:v$1
+
+kubectl -n rook-yugabytedb delete deploy yugabyte-test
+
+kubectl create deployment yugabyte-test --image=localhost:5000/yugabyte-test:v$1 -n rook-yugabytedb

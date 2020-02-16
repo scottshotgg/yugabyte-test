@@ -1,0 +1,10 @@
+# github.com/dgparker/httpsrv v0.0.0-20200123020206-e7713d0a53ab
+github.com/dgparker/httpsrv
+# github.com/google/uuid v1.1.1
+github.com/google/uuid
+# github.com/husobee/vestigo v1.1.1
+github.com/husobee/vestigo
+# github.com/lib/pq v1.3.0
+github.com/lib/pq
+github.com/lib/pq/oid
+github.com/lib/pq/scram
